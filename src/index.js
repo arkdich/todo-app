@@ -2,10 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
+import TaskStorage from './assets/js/classes/TasksDb';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('app')
-);
+const taskStorage = new TaskStorage();
+
+taskStorage.getTasks(new Date().toDateString()).then((tasks) => {
+  ReactDOM.render(
+    <React.StrictMode>
+      <App storage={taskStorage} tasks={tasks} />
+    </React.StrictMode>,
+    document.getElementById('app')
+  );
+});
