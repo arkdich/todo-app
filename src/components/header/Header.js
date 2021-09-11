@@ -13,7 +13,7 @@ export default function Header() {
     <div className="header">
       <CurrentDate date={currentDate} />
       <TaskCount />
-      <DateInput onSelectDate={setCurrentDate} />
+      <DateInput date={currentDate} onSelectDate={setCurrentDate} />
     </div>
   );
 }
