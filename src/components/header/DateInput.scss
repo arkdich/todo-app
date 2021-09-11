@@ -53,6 +53,11 @@
     margin: 0.2rem;
   }
 
+  &__navigation {
+    top: 4px;
+    -webkit-tap-highlight-color: transparent;
+  }
+
   &__navigation-icon::before,
   &__navigation:hover *::before {
     border-color: $tertiary-color;
