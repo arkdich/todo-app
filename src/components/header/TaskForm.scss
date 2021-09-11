@@ -1,0 +1,31 @@
+@import '../../scss//variables';
+
+.task-form {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  &__input {
+    width: 70%;
+    height: 25px;
+    padding: 0px 5px;
+    font-size: 1rem;
+    color: $secondary-color;
+    border-style: none;
+    border-bottom: 2px solid $secondary-color;
+    outline-color: transparent;
+  }
+
+  &__submit {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+    border-radius: 50%;
+    border-style: none;
+    color: #fff;
+    font-family: inherit;
+    font-size: 2rem;
+    font-weight: 300;
+    background-color: $secondary-color;
+  }
+}

@@ -1,16 +1,17 @@
-import './App.css';
+import { Fragment } from 'react/cjs/react.production.min';
+import './App.scss';
 import CurrentDate from './components/header/CurrentDate';
 import TaskCount from './components/header/TaskCount';
 import TaskForm from './components/header/TaskForm';
 
 export default function App() {
   return (
-    <div className="app">
+    <Fragment>
       <div className="header">
         <CurrentDate />
         <TaskCount />
-        <TaskForm />
       </div>
-    </div>
+      <TaskForm />
+    </Fragment>
   );
 }
