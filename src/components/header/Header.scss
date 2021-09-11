@@ -1,0 +1,9 @@
+@import '../../assets/scss/variables';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  color: $quaternary-color;
+}

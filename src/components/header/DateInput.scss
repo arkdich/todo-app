@@ -1,0 +1,49 @@
+@import '../../assets/scss/variables';
+
+.datepicker {
+  &__toggle {
+    position: relative;
+    width: 35px;
+    height: 30px;
+    border-style: none;
+    background-color: transparent;
+    background-image: url('../../assets/icons/calendar.svg');
+    background-position: center;
+    background-size: 22px 22px;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+  }
+}
+
+.datepicker-container {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translateX(-50%);
+}
+
+.react-datepicker {
+  font-family: inherit;
+  border-style: none;
+  box-shadow: 1px 1px 8px 2px rgba(0, 0, 0, 0.1);
+
+  &__header {
+    border-bottom-style: none;
+    background-color: $secondary-color;
+  }
+
+  &__current-month,
+  &__day-name {
+    color: $tertiary-color;
+    font-weight: 400;
+  }
+
+  &__navigation-icon::before,
+  &__navigation:hover *::before {
+    border-color: $tertiary-color;
+  }
+
+  &__day--keyboard-selected {
+    background-color: $secondary-color;
+  }
+}
