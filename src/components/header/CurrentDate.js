@@ -5,7 +5,7 @@ export default function CurrentDate(props) {
     weekday: 'long',
     day: 'numeric',
     month: 'short',
-  }).format(props.date);
+  }).format(new Date(props.date));
 
   return <h2 className="current-date">{dateString}</h2>;
 }

@@ -8,7 +8,7 @@ export default function TaskForm(props) {
     ev.preventDefault();
 
     const newTask = {
-      date: new Date().toDateString(),
+      date: props.date,
       value: inputValue,
       isDone: false,
     };

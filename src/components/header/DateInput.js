@@ -26,7 +26,7 @@ export default function DateInput(props) {
         {isOpened && (
           <ReactDatePicker
             inline
-            selected={props.date}
+            selected={new Date(props.date)}
             onChange={dateChangeHandler}
             onClickOutside={(ev) =>
               ev.target.matches('.datepicker__toggle') ||
