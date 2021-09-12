@@ -1,7 +1,7 @@
 @import '../../assets/scss/variables';
 
 .datepicker {
-  &__toggle {
+  &-toggle {
     position: relative;
     width: 35px;
     height: 30px;
@@ -13,13 +13,25 @@
     background-repeat: no-repeat;
     opacity: 0.8;
   }
+
+  &-container {
+    position: absolute;
+    z-index: 10;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
-.datepicker-container {
-  position: absolute;
-  left: 50%;
-  top: 45%;
-  transform: translateX(-50%);
+.overlay {
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  backdrop-filter: blur(2px);
+  background-color: rgba(0, 0, 0, 0.15);
 }
 
 .react-datepicker {

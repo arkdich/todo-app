@@ -11,6 +11,6 @@ taskStorage.getTasks(new Date().toDateString()).then((tasks) => {
     <React.StrictMode>
       <App storage={taskStorage} tasks={tasks} />
     </React.StrictMode>,
-    document.getElementById('app')
+    document.querySelector('.app')
   );
 });

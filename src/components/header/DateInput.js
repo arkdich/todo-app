@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React, { Fragment, useState } from 'react';
+import ReactDOM from 'react-dom';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './DateInput.scss';
@@ -17,24 +18,26 @@ export default function DateInput(props) {
   };
 
   return (
-    <div className="datepicker">
+    <Fragment>
       <button
-        className="datepicker__toggle"
+        className="datepicker-toggle"
         onClick={toggleDatePickerHandler}
       ></button>
-      <div className="datepicker-container">
-        {isOpened && (
-          <ReactDatePicker
-            inline
-            selected={new Date(props.date)}
-            onChange={dateChangeHandler}
-            onClickOutside={(ev) =>
-              ev.target.matches('.datepicker__toggle') ||
-              toggleDatePickerHandler()
-            }
-          />
+      {isOpened &&
+        ReactDOM.createPortal(
+          <Fragment>
+            <div className="datepicker-container">
+              <ReactDatePicker
+                inline
+                selected={new Date(props.date)}
+                onChange={dateChangeHandler}
+                onClickOutside={toggleDatePickerHandler}
+              />
+            </div>
+            <div className="overlay"></div>
+          </Fragment>,
+          document.querySelector('.datepicker-root')
         )}
-      </div>
-    </div>
+    </Fragment>
   );
 }
