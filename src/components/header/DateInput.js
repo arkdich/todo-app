@@ -4,23 +4,23 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './DateInput.scss';
 
 export default function DateInput(props) {
-  const [isOpened, setIsOpen] = useState(false);
+  const [isOpened, setIsOpened] = useState(false);
 
-  const toggleDatePickerhandler = () => {
-    setIsOpen(!isOpened);
+  const toggleDatePickerHandler = () => {
+    setIsOpened(!isOpened);
   };
 
   const dateChangeHandler = (date) => {
     props.onSelectDate(date);
 
-    toggleDatePickerhandler();
+    toggleDatePickerHandler();
   };
 
   return (
     <div className="datepicker">
       <button
         className="datepicker__toggle"
-        onClick={toggleDatePickerhandler}
+        onClick={toggleDatePickerHandler}
       ></button>
       <div className="datepicker-container">
         {isOpened && (
@@ -30,7 +30,7 @@ export default function DateInput(props) {
             onChange={dateChangeHandler}
             onClickOutside={(ev) =>
               ev.target.matches('.datepicker__toggle') ||
-              toggleDatePickerhandler()
+              toggleDatePickerHandler()
             }
           />
         )}

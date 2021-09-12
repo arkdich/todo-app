@@ -4,7 +4,11 @@ import './TaskForm.scss';
 export default function TaskForm(props) {
   const [inputValue, setInputValue] = useState('');
 
-  const formSubmitHandler = (ev) => {
+  const inputChangeHandler = (ev) => {
+    setInputValue(ev.target.value);
+  };
+
+  const formSubmissionHandler = (ev) => {
     ev.preventDefault();
 
     const newTask = {
@@ -17,12 +21,8 @@ export default function TaskForm(props) {
     setInputValue('');
   };
 
-  const inputChangeHandler = (ev) => {
-    setInputValue(ev.target.value);
-  };
-
   return (
-    <form className="task-form" onSubmit={formSubmitHandler}>
+    <form className="task-form" onSubmit={formSubmissionHandler}>
       <input
         value={inputValue}
         className="task-form__input"

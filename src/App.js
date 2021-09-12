@@ -2,16 +2,16 @@ import { useState } from 'react';
 import { Fragment } from 'react/cjs/react.production.min';
 import './App.scss';
 import Header from './components/header/Header';
-import TaskForm from './components/header/TaskForm';
+import TaskForm from './components/taskForm/TaskForm';
 
 export default function App(props) {
   const taskStorage = props.storage;
 
-  const [currentDate, setCurrentDate] = useState(new Date().toDateString());
-  const [tasksCount, setTasksCount] = useState(props.tasks.length);
+  const [selectedDate, setselectedDate] = useState(new Date().toDateString());
   const [selectedDateTasks, setSelectedDateTasks] = useState(props.tasks);
+  const [tasksCount, setTasksCount] = useState(props.tasks.length);
 
-  const formSubmissionHandler = (task) => {
+  const addNewTaskHandler = (task) => {
     taskStorage.storeTask(task);
 
     setSelectedDateTasks((prev) => [...prev, task]);
@@ -23,15 +23,15 @@ export default function App(props) {
   return (
     <Fragment>
       <Header
+        taskStorage={taskStorage}
         tasks={selectedDateTasks}
-        onAddNewTask={setSelectedDateTasks}
-        storage={taskStorage}
-        date={currentDate}
-        onSetDate={setCurrentDate}
-        onSetTaskCount={setTasksCount}
         tasksCount={tasksCount}
+        date={selectedDate}
+        onSetDate={setselectedDate}
+        onSetTasksCount={setTasksCount}
+        onSetSelectedTasks={setSelectedDateTasks}
       />
-      <TaskForm onFormSubmit={formSubmissionHandler} date={currentDate} />
+      <TaskForm onFormSubmit={addNewTaskHandler} date={selectedDate} />
     </Fragment>
   );
 }

@@ -7,5 +7,5 @@ export default function CurrentDate(props) {
     month: 'short',
   }).format(new Date(props.date));
 
-  return <h2 className="current-date">{dateString}</h2>;
+  return <h1 className="current-date">{dateString}</h1>;
 }
