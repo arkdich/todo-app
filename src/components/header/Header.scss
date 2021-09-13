@@ -11,4 +11,11 @@
 .toggle-deletion {
   width: 30px;
   height: 30px;
+  border-style: none;
+  background-color: transparent;
+  background-image: url('../../assets/icons/pencil.svg');
+  background-position: center;
+  background-size: 22px 22px;
+  background-repeat: no-repeat;
+  opacity: 0.8;
 }

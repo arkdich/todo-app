@@ -79,8 +79,13 @@
 
   &__delete {
     flex-shrink: 0;
-    width: 1.1rem;
-    height: 1.1rem;
+    width: 1.2rem;
+    height: 1.2rem;
     margin-left: auto;
+    border-style: none;
+    background-color: transparent;
+    background-image: url('../../assets/icons/delete.svg');
+    background-position: center;
+    background-size: 1.2rem 1.2rem;
   }
 }
