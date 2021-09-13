@@ -6,7 +6,9 @@ export default function TaskWrapper(props) {
     <ul className="task-wrapper">
       {props.tasks.map((task) => (
         <TaskItem
-          key={task.id ?? Math.random()}
+          onTaskUpdate={props.onItemUpdate}
+          key={task.id}
+          id={task.id}
           value={task.value}
           isDone={task.isDone}
         />

@@ -10,7 +10,7 @@ export default class TaskStorage {
   }
 
   storeTask(task) {
-    this._tasksDb.tasks.put(task);
+    return this._tasksDb.tasks.put(task);
   }
 
   updateTask(id, changes) {

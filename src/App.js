@@ -14,12 +14,12 @@ export default function App(props) {
     tasksCount: props.tasks.length,
   });
 
-  const addNewTaskHandler = (task) => {
-    taskStorage.storeTask(task);
+  const addNewTaskHandler = async (task) => {
+    const taskId = await taskStorage.storeTask(task);
 
     setAppState((old) => ({
       selectedDate: old.selectedDate,
-      selectedDateTasks: [...old.selectedDateTasks, task],
+      selectedDateTasks: [...old.selectedDateTasks, { ...task, id: taskId }],
       tasksCount: old.tasksCount + 1,
     }));
   };
@@ -44,7 +44,10 @@ export default function App(props) {
         onSelectDate={dateSelectionHandler}
       />
       <TaskForm onFormSubmit={addNewTaskHandler} date={appState.selectedDate} />
-      <TaskWrapper tasks={appState.selectedDateTasks} />
+      <TaskWrapper
+        tasks={appState.selectedDateTasks}
+        onItemUpdate={taskStorage.updateTask.bind(taskStorage)}
+      />
     </Fragment>
   );
 }
