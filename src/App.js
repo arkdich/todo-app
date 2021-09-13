@@ -33,7 +33,6 @@ export default function App(props) {
   };
 
   console.log(appState.selectedDateTasks);
-
   return (
     <Fragment>
       <Header

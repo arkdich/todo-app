@@ -11,9 +11,9 @@
 }
 
 .task-wrapper {
-  max-height: 400px;
-  margin-top: 25px;
-  overflow: hidden auto;
+  max-height: 55vh;
+  padding: 25px 10px 0px 10px;
+  overflow-y: auto;
   list-style-type: none;
 
   &__item {
@@ -21,7 +21,7 @@
     z-index: 1;
     display: flex;
     align-items: center;
-    min-height: 25px;
+    min-height: 36px;
     padding: 6px;
     font-size: 1.1rem;
     font-weight: 400;
