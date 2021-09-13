@@ -6,12 +6,9 @@ import TasksCount from './TasksCount';
 export default function Header(props) {
   const dateSelectionHandler = async (rawDate) => {
     const date = new Date(rawDate).toDateString();
-
     const selectedTasks = await props.taskStorage.getTasks(date);
 
-    props.onSetDate(date);
-    props.onSetTasksCount(selectedTasks.length);
-    props.onSetSelectedTasks(selectedTasks);
+    props.onSelectDate(date, selectedTasks);
   };
 
   return (
