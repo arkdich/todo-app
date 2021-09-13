@@ -17,7 +17,11 @@ export default class TaskStorage {
     this._tasksDb.tasks.update(id, changes);
   }
 
-  async getTasks(date) {
-    return await this._tasksDb.tasks.where({ date }).toArray();
+  getTasks(date) {
+    return this._tasksDb.tasks.where({ date }).toArray();
+  }
+
+  deleteTask(id) {
+    this._tasksDb.tasks.delete(id);
   }
 }

@@ -76,4 +76,11 @@
       color: $secondary-color;
     }
   }
+
+  &__delete {
+    flex-shrink: 0;
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-left: auto;
+  }
 }

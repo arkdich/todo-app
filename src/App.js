@@ -6,6 +6,7 @@ import TaskForm from './components/taskForm/TaskForm';
 import TaskWrapper from './components/tasks/TaskWrapper';
 
 export default function App(props) {
+  const [isEditing, setIsEditing] = useState(false);
   const taskStorage = props.storage;
 
   const [appState, setAppState] = useState({
@@ -24,12 +25,28 @@ export default function App(props) {
     }));
   };
 
+  const deleteTaskHandler = (taskId) => {
+    taskStorage.deleteTask(taskId);
+
+    setAppState((old) => ({
+      selectedDate: old.selectedDate,
+      selectedDateTasks: appState.selectedDateTasks.filter(
+        (task) => task.id !== taskId
+      ),
+      tasksCount: old.tasksCount - 1,
+    }));
+  };
+
   const dateSelectionHandler = (date, selectedTasks) => {
     setAppState({
       selectedDate: date,
       selectedDateTasks: selectedTasks,
       tasksCount: selectedTasks.length,
     });
+  };
+
+  const taskEditHandler = () => {
+    setIsEditing(!isEditing);
   };
 
   console.log(appState.selectedDateTasks);
@@ -41,11 +58,14 @@ export default function App(props) {
         tasksCount={appState.tasksCount}
         date={appState.selectedDate}
         onSelectDate={dateSelectionHandler}
+        onEdit={taskEditHandler}
       />
       <TaskForm onFormSubmit={addNewTaskHandler} date={appState.selectedDate} />
       <TaskWrapper
+        isEditing={isEditing}
         tasks={appState.selectedDateTasks}
         onItemUpdate={taskStorage.updateTask.bind(taskStorage)}
+        onItemDelete={deleteTaskHandler}
       />
     </Fragment>
   );
