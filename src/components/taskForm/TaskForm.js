@@ -11,9 +11,11 @@ export default function TaskForm(props) {
   const formSubmissionHandler = (ev) => {
     ev.preventDefault();
 
+    if (inputValue.trim() === '') return;
+
     const newTask = {
       date: props.date,
-      value: inputValue,
+      value: inputValue.trim(),
       isDone: false,
     };
 

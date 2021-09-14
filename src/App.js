@@ -35,6 +35,8 @@ export default function App(props) {
       ),
       tasksCount: old.tasksCount - 1,
     }));
+
+    if (appState.tasksCount - 1 === 0) setIsEditing(false);
   };
 
   const dateSelectionHandler = (date, selectedTasks) => {
