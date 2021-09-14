@@ -20,7 +20,7 @@ export default function TaskItem(props) {
       <label htmlFor={`task-item-${props.id}`} className="task-wrapper__value">
         {props.value}
       </label>
-      {props.isEditing && <button className="task-wrapper__delete"></button>}
+      <button className="task-wrapper__delete"></button>
     </li>
   );
 }

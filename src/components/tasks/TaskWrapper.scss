@@ -20,6 +20,7 @@
     position: relative;
     z-index: 1;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     min-height: 36px;
     padding: 6px;
@@ -42,8 +43,8 @@
     }
 
     &:checked + label:before {
-      content: '\f00c';
       border-color: darken($color: $main-color, $amount: 60);
+      color: $secondary-color;
       opacity: 0.6;
     }
 
@@ -55,11 +56,11 @@
   &__value {
     display: flex;
     align-items: center;
-    padding-left: 20px;
+    padding-left: 22px;
     color: $quaternary-color;
 
     &:before {
-      content: '';
+      content: '\f00c';
       position: absolute;
       left: 0;
       display: flex;
@@ -73,7 +74,10 @@
       font-size: 1.4rem;
       font-weight: 600;
       font-family: 'Font Awesome 5 Free';
-      color: $secondary-color;
+      color: transparent;
+      transition-property: color, border-color;
+      transition-duration: 150ms;
+      transition-timing-function: ease-in;
     }
   }
 
@@ -81,11 +85,35 @@
     flex-shrink: 0;
     width: 1.2rem;
     height: 1.2rem;
-    margin-left: auto;
+    margin: 3px;
     border-style: none;
     background-color: transparent;
     background-image: url('../../assets/icons/delete.svg');
     background-position: center;
     background-size: 1.2rem 1.2rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 100ms ease-in;
+  }
+}
+
+.task-wrapper_editing .task-wrapper {
+  &__delete {
+    opacity: 0.7;
+    pointer-events: visible;
+  }
+
+  &__item {
+    animation: taskEdit 200ms ease-in;
+  }
+}
+
+@keyframes taskEdit {
+  50% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    transform: translateX(0px);
   }
 }
