@@ -1,6 +1,6 @@
 {
-  "short_name": "To Do List",
-  "name": "To Do List",
+  "short_name": "To-Do App",
+  "name": "To-Do App",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,9 +8,9 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "logo256.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "256x256"
     },
     {
       "src": "logo512.png",
@@ -19,7 +19,7 @@
     }
   ],
   "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "display": "browser",
+  "theme_color": "#f5f5f5",
+  "background_color": "#f5f5f5"
 }
