@@ -50,7 +50,6 @@ export default function App(props) {
     setIsEditing(!isEditing);
   };
 
-  console.log(appState.selectedDateTasks);
   return (
     <Fragment>
       <Header
