@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Fragment } from 'react/cjs/react.production.min';
+import { useState, Fragment } from 'react';
 import Header from './components/header/Header';
 import TaskForm from './components/taskForm/TaskForm';
 import TaskWrapper from './components/tasks/TaskWrapper';

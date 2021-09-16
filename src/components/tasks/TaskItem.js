@@ -1,4 +1,4 @@
-import { useState } from 'react/cjs/react.development';
+import { useState } from 'react';
 
 export default function TaskItem(props) {
   const [isChecked, setIsChecked] = useState(props.isDone);
