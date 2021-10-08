@@ -1,6 +1,6 @@
 import Dexie from 'dexie';
 
-export default class TaskStorage {
+class TaskStorage {
   _tasksDb = new Dexie('TasksDb');
 
   constructor() {
@@ -25,3 +25,7 @@ export default class TaskStorage {
     this._tasksDb.tasks.delete(id);
   }
 }
+
+const taskStorage = new TaskStorage();
+
+export default taskStorage;

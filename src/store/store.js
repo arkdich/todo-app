@@ -1,12 +1,15 @@
-import { createStore } from 'redux';
-import { todosReducer } from './todosSlice';
+import { applyMiddleware, createStore } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import { tasksReducer } from './tasksSlice';
 
 function reducer(state = {}, action) {
   return {
-    todos: todosReducer(state.todos, action),
+    tasks: tasksReducer(state.tasks, action),
   };
 }
 
-const store = createStore(reducer);
+const enhancer = applyMiddleware(thunkMiddleware);
+
+const store = createStore(reducer, enhancer);
 
 export default store;
