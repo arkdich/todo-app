@@ -1,9 +1,9 @@
 import Dexie from 'dexie';
 
 class TaskStorage {
-  _tasksDb = new Dexie('TasksDb');
-
   constructor() {
+    this._tasksDb = new Dexie('TasksDb');
+
     this._tasksDb.version(1).stores({
       tasks: '++id, date, value, isDone',
     });

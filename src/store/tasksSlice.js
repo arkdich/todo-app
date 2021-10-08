@@ -50,12 +50,25 @@ function tasksReducer(state = initialState, { type, payload }) {
   }
 
   if (type === 'tasks/addItem') {
+    return { ...state, items: [...state.items, payload] };
   }
 
   if (type === 'tasks/updateItem') {
+    return {
+      ...state,
+      items: state.items.map((item) => {
+        if (item.id === payload.id) return { ...item, isDone: payload.isDone };
+
+        return { ...item };
+      }),
+    };
   }
 
   if (type === 'tasks/deleteItem') {
+    return {
+      ...state,
+      items: state.items.filter((item) => item.id !== payload),
+    };
   }
 
   return state;
@@ -73,6 +86,29 @@ const tasksThunk = {
       dispatch(tasksActions.setItems({ date: taskDate, tasks }));
 
       return tasks;
+    };
+  },
+  addTask(task) {
+    return async function AddTaskThunk(dispatch) {
+      const id = await taskStorage.storeTask(task);
+
+      dispatch(tasksActions.addItem({ id, ...task }));
+    };
+  },
+  updateTask(payload) {
+    return async function AddTaskThunk(dispatch) {
+      await taskStorage.updateTask(payload.id, { isDone: payload.isDone });
+
+      dispatch(
+        tasksActions.updateItem({ id: payload.id, isDone: payload.isDone })
+      );
+    };
+  },
+  deleteTask(id) {
+    return async function AddTaskThunk(dispatch) {
+      await taskStorage.deleteTask(id);
+
+      dispatch(tasksActions.deleteItem(id));
     };
   },
 };

@@ -1,8 +1,13 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { tasksThunk } from '../../store/tasksSlice';
 import './TaskForm.scss';
 
-export default function TaskForm(props) {
+export default function TaskForm() {
   const [inputValue, setInputValue] = useState('');
+  const date = useSelector((state) => state.tasks.date);
+
+  const dispatch = useDispatch();
 
   const inputChangeHandler = (ev) => {
     setInputValue(ev.target.value);
@@ -13,13 +18,14 @@ export default function TaskForm(props) {
 
     if (inputValue.trim() === '') return;
 
-    const newTask = {
-      date: props.date,
-      value: inputValue.trim(),
-      isDone: false,
-    };
+    dispatch(
+      tasksThunk.addTask({
+        date,
+        value: inputValue.trim(),
+        isDone: false,
+      })
+    );
 
-    props.onFormSubmit(newTask);
     setInputValue('');
   };
 
