@@ -2,16 +2,17 @@ import './Header.scss';
 import CurrentDate from './CurrentDate';
 import DateInput from './DateInput';
 import TasksCount from './TasksCount';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { tasksActions } from '../../store/tasksSlice';
 
-export default function Header(props) {
+export default function Header() {
   const tasksCount = useSelector((state) => state.tasks.items.length);
-  // const dateSelectionHandler = async (rawDate) => {
-  //   const date = new Date(rawDate).toDateString();
-  //   const selectedTasks = await props.taskStorage.getTasks(date);
 
-  //   props.onSelectDate(date, selectedTasks);
-  // };
+  const dispatch = useDispatch();
+
+  const toggleEditingHandler = () => {
+    dispatch(tasksActions.setIsEditing());
+  };
 
   return (
     <div className="header">
@@ -21,7 +22,7 @@ export default function Header(props) {
         <button
           type="button"
           className="toggle-deletion"
-          // onClick={() => props.onEdit()}
+          onClick={toggleEditingHandler}
         ></button>
       )}
       <DateInput />

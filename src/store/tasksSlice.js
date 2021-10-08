@@ -1,11 +1,19 @@
 import taskStorage from '../assets/js/classes/TasksDb';
 
 const initialState = {
+  isLoaded: false,
+  isEditing: false,
   date: new Date().toDateString(),
   items: [],
 };
 
 const tasksActions = {
+  setIsLoaded(payload) {
+    return { type: 'tasks/setIsLoaded', payload };
+  },
+  setIsEditing(payload) {
+    return { type: 'tasks/setIsEditing', payload };
+  },
   setItems(payload) {
     return { type: 'tasks/setItems', payload };
   },
@@ -21,8 +29,24 @@ const tasksActions = {
 };
 
 function tasksReducer(state = initialState, { type, payload }) {
+  if (type === 'tasks/setIsLoaded') {
+    return { ...state, isLoaded: payload };
+  }
+
+  if (type === 'tasks/setIsEditing') {
+    if (payload) return { ...state, isEditing: payload };
+
+    return { ...state, isEditing: !state.isEditing };
+  }
+
   if (type === 'tasks/setItems') {
-    return { date: payload.date, items: payload.tasks };
+    return {
+      ...state,
+      isEditing: false,
+      isLoaded: true,
+      date: payload.date,
+      items: payload.tasks,
+    };
   }
 
   if (type === 'tasks/addItem') {
@@ -40,13 +64,13 @@ function tasksReducer(state = initialState, { type, payload }) {
 const tasksThunk = {
   fetchTasks(date) {
     return async function fetchTasksThunk(dispatch, getState) {
-      let tasskDate = date;
+      const taskDate = date ? date : getState().tasks.date;
 
-      if (!tasskDate) tasskDate = getState().tasks.date;
+      dispatch(tasksActions.setIsLoaded(false));
 
-      const tasks = await taskStorage.getTasks(tasskDate);
+      const tasks = await taskStorage.getTasks(taskDate);
 
-      dispatch(tasksActions.setItems({ date: tasskDate, tasks }));
+      dispatch(tasksActions.setItems({ date: taskDate, tasks }));
 
       return tasks;
     };

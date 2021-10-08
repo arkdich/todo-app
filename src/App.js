@@ -1,23 +1,20 @@
-import { useState, Fragment, useEffect } from 'react';
+import { Fragment, useEffect } from 'react';
 import Header from './components/header/Header';
 import TaskForm from './components/taskForm/TaskForm';
 import TaskWrapper from './components/tasks/TaskWrapper';
 import Footer from './components/footer/Footer';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { tasksThunk } from './store/tasksSlice';
 import './App.scss';
 
 export default function App() {
-  const [isEditing, setIsEditing] = useState(false);
-  const [isFetched, setIsFetched] = useState(false);
+  const isLoaded = useSelector((state) => state.tasks.isLoaded);
+  const isEditing = useSelector((state) => state.tasks.isEditing);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async () => {
-      await dispatch(tasksThunk.fetchTasks());
-      setIsFetched(true);
-    })();
+    dispatch(tasksThunk.fetchTasks());
   }, [dispatch]);
 
   // const [appState, setAppState] = useState({
@@ -58,11 +55,9 @@ export default function App() {
   //   });
   // };
 
-  const taskEditHandler = () => {
-    setIsEditing(!isEditing);
-  };
+  console.log(isEditing);
 
-  const tasksContainer = isFetched ? (
+  const tasksContainer = isLoaded ? (
     <TaskWrapper isEditing={isEditing} />
   ) : (
     <div className="loading-gif"></div>
@@ -70,7 +65,7 @@ export default function App() {
 
   return (
     <Fragment>
-      <Header onEdit={taskEditHandler} />
+      <Header />
       <TaskForm />
       {tasksContainer}
       <Footer />
