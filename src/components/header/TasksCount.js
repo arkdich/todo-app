@@ -1,9 +1,14 @@
 import './TasksCount.scss';
+import PropTypes from 'prop-types';
 
 export default function TasksCount(props) {
   return (
     <p className="task-count">
-      {`${props.tasksCount} ${props.tasksCount === 1 ? `task` : 'tasks'}`}
+      {`${props.count} ${props.count === 1 ? `task` : 'tasks'}`}
     </p>
   );
 }
+
+TasksCount.propTypes = {
+  count: PropTypes.number,
+};

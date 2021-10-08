@@ -5,8 +5,9 @@ import TaskWrapper from './components/tasks/TaskWrapper';
 import Footer from './components/footer/Footer';
 import { useDispatch } from 'react-redux';
 import { tasksThunk } from './store/tasksSlice';
+import './App.scss';
 
-export default function App(props) {
+export default function App() {
   const [isEditing, setIsEditing] = useState(false);
   const [isFetched, setIsFetched] = useState(false);
 
@@ -14,9 +15,8 @@ export default function App(props) {
 
   useEffect(() => {
     (async () => {
-      const selectedTasks = await dispatch(tasksThunk.fetchTasks());
+      await dispatch(tasksThunk.fetchTasks());
       setIsFetched(true);
-      console.log(selectedTasks);
     })();
   }, [dispatch]);
 
@@ -62,12 +62,18 @@ export default function App(props) {
     setIsEditing(!isEditing);
   };
 
+  const tasksContainer = isFetched ? (
+    <TaskWrapper isEditing={isEditing} />
+  ) : (
+    <div className="loading-gif"></div>
+  );
+
   return (
     <Fragment>
-      {/* <Header onEdit={taskEditHandler} />
+      <Header onEdit={taskEditHandler} />
       <TaskForm />
-      {isFetched && <TaskWrapper isEditing={isEditing} />}
-      <Footer /> */}
+      {tasksContainer}
+      <Footer />
     </Fragment>
   );
 }

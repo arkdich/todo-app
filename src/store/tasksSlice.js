@@ -22,7 +22,7 @@ const tasksActions = {
 
 function tasksReducer(state = initialState, { type, payload }) {
   if (type === 'tasks/setItems') {
-    return { date: payload.date, tasks: payload.tasks };
+    return { date: payload.date, items: payload.tasks };
   }
 
   if (type === 'tasks/addItem') {

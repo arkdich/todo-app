@@ -3,16 +3,21 @@ import ReactDOM from 'react-dom';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './DateInput.scss';
+import { useSelector, useDispatch } from 'react-redux';
+import { tasksThunk } from '../../store/tasksSlice';
 
 export default function DateInput(props) {
   const [isOpened, setIsOpened] = useState(false);
 
+  const date = useSelector((state) => state.tasks.date);
+  const dispatch = useDispatch();
+
   const toggleDatePickerHandler = () => {
-    setIsOpened(!isOpened);
+    setIsOpened((state) => !state);
   };
 
-  const dateChangeHandler = (date) => {
-    props.onSelectDate(date);
+  const dateChangeHandler = async (date) => {
+    await dispatch(tasksThunk.fetchTasks(date));
 
     toggleDatePickerHandler();
   };
@@ -29,7 +34,7 @@ export default function DateInput(props) {
             <div className="datepicker-container">
               <ReactDatePicker
                 inline
-                selected={new Date(props.date)}
+                selected={new Date(date)}
                 onChange={dateChangeHandler}
                 onClickOutside={toggleDatePickerHandler}
               />
