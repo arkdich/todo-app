@@ -7,6 +7,11 @@ import { tasksActions } from '../../store/tasksSlice';
 
 export default function Header() {
   const tasksCount = useSelector((state) => state.tasks.items.length);
+  const isDisabled = tasksCount === 0;
+
+  const classString = `toggle-deletion ${
+    isDisabled ? 'toggle-deletion_disabled' : ''
+  }`;
 
   const dispatch = useDispatch();
 
@@ -18,13 +23,12 @@ export default function Header() {
     <div className="header">
       <CurrentDate />
       <TasksCount count={tasksCount} />
-      {tasksCount !== 0 && (
-        <button
-          type="button"
-          className="toggle-deletion"
-          onClick={toggleEditingHandler}
-        ></button>
-      )}
+      <button
+        type="button"
+        className={classString}
+        disabled={isDisabled}
+        onClick={toggleEditingHandler}
+      ></button>
       <DateInput />
     </div>
   );
