@@ -15,6 +15,7 @@
   padding: 25px 10px 0px 10px;
   overflow-y: auto;
   list-style-type: none;
+  transition: height 250ms ease-out;
 
   &__item {
     position: relative;
