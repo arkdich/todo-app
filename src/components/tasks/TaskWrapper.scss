@@ -32,6 +32,10 @@
     font-size: 1.1rem;
     font-weight: 400;
     -webkit-tap-highlight-color: transparent;
+
+    &_deleting {
+      animation: taskDeleting 300ms ease forwards;
+    }
   }
 
   &__check {
@@ -116,5 +120,16 @@
 
   100% {
     transform: translateX(0px);
+  }
+}
+
+@keyframes taskDeleting {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
   }
 }
