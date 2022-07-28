@@ -11,7 +11,7 @@ To-do list web app with date pick feature
 
 # Features
 
-- allows to add, mark and delete tasks with gorgeous animations
+- add, mark and delete tasks with gorgeous animations
 
   ![](https://i.imgur.com/6zRexvW.gif)
 
