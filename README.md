@@ -1,27 +1,28 @@
+### [Read in English](/READNE.en.md)
+
 # About
 
-To-do list web app with date pick feature
+To-do list в виде веб-приложения с функцией выбора даты
 
-- written with react
-- styled with scss and [react-transition-group](https://github.com/reactjs/react-transition-group)
-- stores data in [IndexedDb](https://github.com/dexie/Dexie.js) and redux, using redux-thunk
-- uses [react-datepicker](https://github.com/Hacker0x01/react-datepicker) component
+- использовал: react, scss и [react-transition-group](https://github.com/reactjs/react-transition-group)
+- данные хранятся в [IndexedDb](https://github.com/dexie/Dexie.js), используя redux и redux-thunk
+- выбор даты при помощи [react-datepicker](https://github.com/Hacker0x01/react-datepicker)
 
-## See [Live Demo](https://arkdich.github.io/todo-app/)
+## [Онлайн демка](https://arkdich.github.io/todo-app/)
 
 # Features
 
-- add, mark and delete tasks with gorgeous animations
+- добавление, отметка и удаление активностей
 
   ![](https://i.imgur.com/6zRexvW.gif)
 
-- pick a specific date
+- просмотр списка для определенной даты
 
   ![](https://i.imgur.com/oCfy2gw.gif)
 
 # Installation
 
-Project requires Node v16 or lower. Clone this repo and install dependencies
+Для запуска требуется Node v16 или ниже. Склонируйте репозиторий и установите зависимости
 
 ```
 git clone git@github.com:arkdich/todo-app.git
@@ -31,7 +32,7 @@ git clone git@github.com:arkdich/todo-app.git
 npm i
 ```
 
-Start dev server
+Запустите dev сервер
 
 ```
 npm start
